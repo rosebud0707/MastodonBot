@@ -16,7 +16,7 @@ class Stream(StreamListener):
                 content = notif['status']['content']
                 id = notif['status']['account']['username']
                 st = notif['status']
-                logging.info("返信開始")
+                logging.info("@" + str(id) + "さんへ返信処理開始")
                 # メイン処理呼び出し
                 replyMsg(content, st, id)
         except Exception as e:
