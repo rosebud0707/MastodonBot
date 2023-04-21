@@ -55,7 +55,6 @@ def replyMsg(content,st,id):
     try:
         logging.info("メイン処理開始")
         # インデックス生成
-        endLine = readLines()
         rand = random.randint(1,readLines())
         # 項目設定
         target_line = linecache.getline(os.path.dirname(__file__) + "/" + ini['botSetting']['dataSourceFileNm'], rand)
