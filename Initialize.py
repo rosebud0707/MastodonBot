@@ -14,14 +14,17 @@ class InitializeSetting:
     """
     log_file_name: str
     log_file_name_extension: str
+    mastodon_bot_account_id: str
     mastodon_bot_client_id: str
     mastodon_bot_client_secret: str
     mastodon_bot_access_token: str
     mastodon_bot_api_base_url: str
     mastodon_bot_visibility_unlisted: str
+    mastodon_bot_visibility_private: str
     now_date: str
     #mastodon_bot_datasource_path: str
     chatgpt_api_key: str
+    stop: str
 
 class Init_read:
     """初期設定
@@ -46,11 +49,14 @@ class Init_read:
             return InitializeSetting(
                                     log_file_name = str(ini['LogWriter']['fileNmBase']),
                                     log_file_name_extension = str(ini['LogWriter']['extension']),
+                                    mastodon_bot_account_id = str(ini['botSetting']['account_id']),
                                     mastodon_bot_client_id = str(ini['botSetting']['client_id']),
                                     mastodon_bot_client_secret = str(ini['botSetting']['client_secret']),
                                     mastodon_bot_access_token = str(ini['botSetting']['access_token']),
                                     mastodon_bot_api_base_url = str(ini['botSetting']['api_base_url']),
-                                    mastodon_bot_visibility_unlisted = str(ini['botSetting']['visibilityUnlisted']),
+                                    mastodon_bot_visibility_unlisted = str(ini['botSetting']['visibility_unlisted']),
+                                    mastodon_bot_visibility_private = str(ini['botSetting']['visibility_private']),
+                                    stop = str(ini['botSetting']['stop']),
                                     now_date = now.strftime('%Y%m%d'),
                                     # self.mastodon_bot_datasource_path = str(ini['LogWriter']['extension'])
                                     chatgpt_api_key = str(ini['chatGPTSetting']['API_key'])
@@ -82,7 +88,7 @@ class Loggings:
 
             logging.basicConfig(filename = logFilePath,                                      # ログファイル名 
                                 filemode = wkFileMode,                                       # ファイル書込モード
-                                level    = logging.DEBUG,                                    # ログレベル
+                                level    = logging.INFO,                                     # ログレベル
                                 format   = " %(asctime)s - %(levelname)s - %(message)s "     # ログ出力フォーマット
                             )
             
