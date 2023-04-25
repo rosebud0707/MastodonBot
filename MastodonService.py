@@ -49,7 +49,7 @@ class Stream(StreamListener):
                     
                     content = str(content) + " 必ず500文字以内で簡潔に回答してください。"
 
-                    self.logger.info(content)
+                    self.logger.info("質問文" + str(content))
 
                     res = self.generateToots.gen_msg(content)
 
@@ -88,12 +88,12 @@ class MastodonProcedure:
                     self.mastodon.status_reply(st,
                                 str(splitLine[num]),
                                 id,
-                                visibility = self.initValues.mastodon_bot_visibility_private)
+                                visibility = self.initValues.mastodon_bot_visibility_unlisted)
             else:
                 self.mastodon.status_reply(st,
                         str(response),
                         id,
-                        visibility = self.initValues.mastodon_bot_visibility_private)
+                        visibility = self.initValues.mastodon_bot_visibility_unlisted)
                 
         except Exception as e:
             self.logger.critical("トゥート処理にて、エラーが発生しました。" + str(e))

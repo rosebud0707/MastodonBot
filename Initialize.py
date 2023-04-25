@@ -88,7 +88,7 @@ class Loggings:
 
             logging.basicConfig(filename = logFilePath,                                      # ログファイル名 
                                 filemode = wkFileMode,                                       # ファイル書込モード
-                                level    = logging.DEBUG,                                     # ログレベル
+                                level    = logging.INFO,                                     # ログレベル
                                 format   = " %(asctime)s - %(levelname)s - %(message)s "     # ログ出力フォーマット
                             )
             

@@ -26,10 +26,10 @@ class GenerateToots:
                 "content": content
                 }]
             )
-            response = openAiInstance.choices[0].message.content
-            self.logger.info("生成文：")
-            self.logger.info("生成文：" + response)
 
+            response = openAiInstance.choices[0].message.content
+            self.logger.info("生成文：" + response)
+            
             return str(response)
 
         except Exception as e:
