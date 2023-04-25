@@ -5,9 +5,9 @@ import Initialize
 import openai
 
 class GenerateToots:
-    def __init__(self, logger, chatgpt_api_key):
+    def __init__(self, logger, initValues):
         self.logger = logger
-        openai.api_key = str(chatgpt_api_key)
+        openai.api_key = str(initValues.chatgpt_api_key)
 
     def gen_msg(self, content):
         """レスポンス生成
@@ -27,7 +27,7 @@ class GenerateToots:
                 }]
             )
             response = openAiInstance.choices[0].message.content
-
+            self.logger.info("生成文：")
             self.logger.info("生成文：" + response)
 
             return str(response)
