@@ -49,7 +49,7 @@ class Stream(StreamListener):
                     
                     content = str(content) + " 必ず500文字以内で簡潔に回答してください。"
 
-                    self.logger.info("質問文" + str(content))
+                    self.logger.info("質問文:" + str(content))
 
                     res = self.generateToots.gen_msg(content)
 
