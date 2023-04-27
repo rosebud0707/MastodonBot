@@ -19,8 +19,10 @@ class InitializeSetting:
     mastodon_bot_client_secret: str
     mastodon_bot_access_token: str
     mastodon_bot_api_base_url: str
+    mastodon_bot_visibility_public: str
     mastodon_bot_visibility_unlisted: str
     mastodon_bot_visibility_private: str
+    mastodon_bot_visibility_direct: str
     now_date: str
     #mastodon_bot_datasource_path: str
     chatgpt_api_key: str
@@ -54,8 +56,10 @@ class Init_read:
                                     mastodon_bot_client_secret = str(ini['botSetting']['client_secret']),
                                     mastodon_bot_access_token = str(ini['botSetting']['access_token']),
                                     mastodon_bot_api_base_url = str(ini['botSetting']['api_base_url']),
+                                    mastodon_bot_visibility_public = str(ini['botSetting']['visibility_public']),
                                     mastodon_bot_visibility_unlisted = str(ini['botSetting']['visibility_unlisted']),
                                     mastodon_bot_visibility_private = str(ini['botSetting']['visibility_private']),
+                                    mastodon_bot_visibility_direct = str(ini['botSetting']['visibility_direct']),
                                     stop = str(ini['botSetting']['stop']),
                                     now_date = now.strftime('%Y%m%d'),
                                     # self.mastodon_bot_datasource_path = str(ini['LogWriter']['extension'])

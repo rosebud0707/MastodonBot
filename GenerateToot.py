@@ -19,6 +19,7 @@ class GenerateToots:
         """
         try:
             # OpenAIインスタンス化
+            self.logger.info("OpenAIインスタンス化")
             openAiInstance = openai.ChatCompletion.create(
                 model="gpt-3.5-turbo",
                 messages=[{
