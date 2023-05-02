@@ -15,7 +15,7 @@ class Controller:
             外部設定ファイルの値取得、ログ出力クラスのインスタンス化
         """
         # インスタンス化
-        init = Initialize.Init_read()
+        init = Initialize.InitRead()
 
         # 外部設定ファイル_値取得
         self.initValues = init.__initValues__()
