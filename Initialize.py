@@ -28,7 +28,7 @@ class InitializeSetting:
     chatgpt_api_key: str
     stop: str
 
-class Init_read:
+class InitRead:
     """初期設定
         外部設定ファイルを読み込む
     """

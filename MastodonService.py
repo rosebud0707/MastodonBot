@@ -46,7 +46,7 @@ class Stream(StreamListener):
                 id = notif['status']['account']['username'] # id
                 uri = notif['status']['uri'] # ユーザのインスタンスURI
                 content_raw = notif['status']['content'] # リプライ内容
-                content = self.EditContents(content_raw) # 質問文の編集
+                content = self.edit_content(content_raw) # 質問文の編集
 
                 if notif['status']['visibility'] == 'direct': # 公開範囲設定。directでリプライされた際はdirectで、それ以外はunlistedで返答を行う。
                     visibility_status = self.initValues.mastodon_bot_visibility_direct
@@ -82,7 +82,7 @@ class Stream(StreamListener):
         except Exception as e:
             self.logger.critical("通知の受信に関して、エラーが発生しました。" + str(e))
     
-    def EditContents(self, content_raw):
+    def edit_content(self, content_raw):
         '''質問内容編集
             取り出したリプライの情報より、質問文を編集する。
         '''
