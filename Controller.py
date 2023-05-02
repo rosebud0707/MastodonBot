@@ -25,7 +25,7 @@ class Controller:
 
         # インスタンス化
         self.logging = Initialize.Loggings(logFilePath)
-        
+
     def run(self):
         """Mastodonサービスの起動
         """
