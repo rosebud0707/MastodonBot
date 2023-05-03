@@ -26,6 +26,8 @@ class InitializeSetting:
     now_date: str
     #mastodon_bot_datasource_path: str
     chatgpt_api_key: str
+    receive_interval: int
+    timeout_interval: int
     stop: str
 
 class InitRead:
@@ -61,6 +63,8 @@ class InitRead:
                                     mastodon_bot_visibility_private = str(ini['botSetting']['visibility_private']),
                                     mastodon_bot_visibility_direct = str(ini['botSetting']['visibility_direct']),
                                     stop = str(ini['botSetting']['stop']),
+                                    receive_interval = int(ini['botSetting']['receive_interval']),
+                                    timeout_interval = int(ini['botSetting']['timeout_interval']),
                                     now_date = now.strftime('%Y%m%d'),
                                     # self.mastodon_bot_datasource_path = str(ini['LogWriter']['extension'])
                                     chatgpt_api_key = str(ini['chatGPTSetting']['API_key'])
@@ -68,7 +72,6 @@ class InitRead:
 
         except Exception as e:
             print("iniファイル読み込みエラー" + str(e))
-            input()
             exit
 
 class Loggings:

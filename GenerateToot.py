@@ -1,15 +1,20 @@
 """GenerateToot.py
     OpenAI APIを用いて、質問に対する返答を生成する。
 """
-import Initialize
+import asyncio
 import openai
+import time
 
 class GenerateToots:
+    """GenerateToots
+        APIに質問文を投げかけて、トゥートの生成を行う。
+    """
     def __init__(self, logger, initValues):
         self.logger = logger
+        self.initValues = initValues
         openai.api_key = str(initValues.chatgpt_api_key)
 
-    def gen_msg(self, content):
+    async def gen_msg(self, content):
         """レスポンス生成
             OpenAI APIを用いて、返答生成
             Args:
@@ -34,4 +39,19 @@ class GenerateToots:
             return str(response)
 
         except Exception as e:
-            Initialize.logging.critical("文書生成に関してエラーが発生しました。" + str(e))
+            self.logger.critical("文書生成に関してエラーが発生しました。" + str(e))
+    
+    async def process_wait(self, content):
+        """タイムアウトエラー処理
+            規定時間以内に応答しない場合、タイムアウトエラーとする。
+            Args:
+                content:リプライ
+        """        
+        try:
+            result = await asyncio.wait_for(self.gen_msg(content), timeout=self.initValues.timeout_interval)
+            return result
+
+        except asyncio.TimeoutError:
+            # Timeoutが発生したとき
+            self.logger.critical("タイムアウトエラー")
+            return "タイムアウトエラー"
