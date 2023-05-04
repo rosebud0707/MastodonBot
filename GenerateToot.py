@@ -2,8 +2,9 @@
     OpenAI APIを用いて、質問に対する返答を生成する。
 """
 import asyncio
+
 import openai
-import time
+
 
 class GenerateToots:
     """GenerateToots
@@ -27,10 +28,9 @@ class GenerateToots:
             self.logger.info("OpenAIインスタンス化")
             openAiInstance = openai.ChatCompletion.create(
                 model="gpt-3.5-turbo",
-                messages=[{
-                "role": "user",
-                "content": content
-                }]
+                temperature=0.5,
+                messages=[{"role": "system", "content": "あなたは温和な女性口調のアシスタントです。"},
+                          {"role": "user","content": content}]
             )
 
             response = openAiInstance.choices[0].message.content

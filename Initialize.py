@@ -7,6 +7,7 @@ import datetime
 import logging
 import os
 
+
 @dataclasses.dataclass
 class InitializeSetting:
     """データエンティティ
@@ -23,8 +24,8 @@ class InitializeSetting:
     mastodon_bot_visibility_unlisted: str
     mastodon_bot_visibility_private: str
     mastodon_bot_visibility_direct: str
-    now_date: str
     #mastodon_bot_datasource_path: str
+    now_date: str
     chatgpt_api_key: str
     receive_interval: int
     timeout_interval: int
@@ -37,7 +38,8 @@ class InitRead:
     def __initValues__(self):
         """初期設定
             外部設定ファイルの値をデータエンティティにセット
-            Returns:データエンティティ(外部設定ファイル)
+            Returns:
+                データエンティティ(外部設定ファイル)
         """
         try:
             # 外部設定ファイル読み込み
@@ -66,7 +68,6 @@ class InitRead:
                                     receive_interval = int(ini['botSetting']['receive_interval']),
                                     timeout_interval = int(ini['botSetting']['timeout_interval']),
                                     now_date = now.strftime('%Y%m%d'),
-                                    # self.mastodon_bot_datasource_path = str(ini['LogWriter']['extension'])
                                     chatgpt_api_key = str(ini['chatGPTSetting']['API_key'])
                                     )
 

@@ -1,12 +1,15 @@
 """MastodonService.py
     Mastodonに関連する処理
 """
-from bs4 import BeautifulSoup 
-from mastodon import Mastodon, StreamListener
 import asyncio
 import datetime
-import GenerateToot
 import hashlib
+
+from bs4 import BeautifulSoup 
+from mastodon import Mastodon, StreamListener
+
+import GenerateToot
+
 
 class MastodonService:
     """MastodonService
@@ -93,7 +96,7 @@ class Stream(StreamListener):
                 # 正常処理   
                 else:                             
                     self.logger.info('@' + str(id) + "さんへ返信処理開始")
-                    content = "こんにちは。" + content
+                    content = "こんにちは。" + content + " 500字以内で回答してください。"
                     self.logger.info("質問文:" + str(content))
 
                     loop = asyncio.get_event_loop()

@@ -1,10 +1,12 @@
 """Controller.py
     外部設定ファイルの読み込み、ログ出力クラスのインスタンス化
-    Mastodonサービスの起動を行う
+    Mastodonサービスの起動を行う、メイン処理
 """
-import Initialize
 import os
+
+import Initialize
 import MastodonService
+
 
 class Controller:
     """コントローラ
