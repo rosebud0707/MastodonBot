@@ -30,6 +30,9 @@ class InitializeSetting:
     receive_interval: int
     timeout_interval: int
     stop: str
+    chatGPT_model: str
+    temperature: float
+    role_system_content: str
 
 class InitRead:
     """初期設定
@@ -68,7 +71,10 @@ class InitRead:
                                     receive_interval = int(ini['botSetting']['receive_interval']),
                                     timeout_interval = int(ini['botSetting']['timeout_interval']),
                                     now_date = now.strftime('%Y%m%d'),
-                                    chatgpt_api_key = str(ini['chatGPTSetting']['API_key'])
+                                    chatgpt_api_key = str(ini['chatGPTSetting']['API_key']),
+                                    chatGPT_model = str(ini['chatGPTSetting']['chatGPT_model']),
+                                    temperature = float(ini['chatGPTSetting']['temperature']),
+                                    role_system_content = str(ini['chatGPTSetting']['role_system_content'])
                                     )
 
         except Exception as e:
