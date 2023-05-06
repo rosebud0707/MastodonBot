@@ -27,9 +27,9 @@ class GenerateToots:
             # OpenAIインスタンス化
             self.logger.info("OpenAIインスタンス化")
             openAiInstance = openai.ChatCompletion.create(
-                model="gpt-3.5-turbo",
-                temperature=0.5,
-                messages=[{"role": "system", "content": "あなたは温和な女性口調のアシスタントです。"},
+                model=self.initValues.chatGPT_model,
+                temperature=self.initValues.temperature,
+                messages=[{"role": "system", "content": self.initValues.role_system_content},
                           {"role": "user","content": content}]
             )
 
