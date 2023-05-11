@@ -15,7 +15,7 @@ class GenerateToots:
         self.initValues = initValues
         openai.api_key = str(initValues.chatgpt_api_key)
 
-    async def gen_msg(self, content):
+    def gen_msg(self, content):
         """レスポンス生成
             OpenAI APIを用いて、返答生成
             Args:
@@ -40,6 +40,7 @@ class GenerateToots:
 
         except Exception as e:
             self.logger.critical("文書生成に関してエラーが発生しました。" + str(e))
+            return "chatGPTでエラーが発生しました。"
     
     async def process_wait(self, content):
         """タイムアウトエラー処理
@@ -48,10 +49,11 @@ class GenerateToots:
                 content:リプライ
         """        
         try:
-            result = await asyncio.wait_for(self.gen_msg(content), timeout=self.initValues.timeout_interval)
+            loop = asyncio.get_event_loop()
+            result = await asyncio.wait_for(loop.run_in_executor(None, self.gen_msg, content), timeout=self.initValues.timeout_interval)
             return result
 
         except asyncio.TimeoutError:
             # Timeoutが発生したとき
             self.logger.critical("タイムアウトエラー")
-            return "タイムアウトエラー"
+            return "タイムアウトエラー。しばらく経ってから再度投稿してください。"
